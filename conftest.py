@@ -5,7 +5,6 @@ from azure.storage.filedatalake import DataLakeServiceClient
 @pytest.fixture(scope="session")
 def account_name():
     return os.getenv("STORAGE_ACCOUNT_NAME")
-    account_key = os.getenv("STORAGE_ACCOUNT_KEY")
 
 @pytest.fixture(scope="session")
 def account_key():
