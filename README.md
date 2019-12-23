@@ -28,7 +28,7 @@ account_name = os.getenv("STORAGE_ACCOUNT_NAME")
 account_key = os.getenv("STORAGE_ACCOUNT_KEY")
 account_url = "https://{}.dfs.core.windows.net/".format(account_name)
 
-dfs = DataLakeFileSystem(account_url, credential, "filesystem")
+dfs = DataLakeFileSystem(account_url, account_key, "filesystem")
 
 dfs.mkdir("testdir")
 
