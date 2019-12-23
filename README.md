@@ -33,8 +33,11 @@ dfs = DataLakeFileSystem(account_url, credential, "filesystem")
 dfs.mkdir("testdir")
 
 with dfs.open("testdir/hello.txt", "wb") as f:
-    f.write("world")
+    f.write(b"world")
 
 dfs.ls("testdir")
 dfs.mv("testidr", "newdir")
+
+with dfs.open("newdir/hello.txt", "rb") as f:
+    print(f.read())
 ```
