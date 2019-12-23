@@ -10,8 +10,28 @@ See:
 
 To run the tests you need a [Azure Data Lake Gen2 Account](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) with hierarchical namespace enabled:
 
-    export STORAGE_ACCOUNT_NAME=byblob
-    export STORAGE_ACCOUNT_KEY=
+    export STORAGE_ACCOUNT_NAME=xxx
+    export STORAGE_ACCOUNT_KEY=yyy
 
     pip install -r requirements.txt
     pytest test_fsspec_adls.py -vv
+
+
+Example:
+
+    import os
+    from fsspec_adls import DataLakeFileSystem
+    
+    account_name = os.getenv("STORAGE_ACCOUNT_NAME")
+    account_key = os.getenv("STORAGE_ACCOUNT_KEY")
+    account_url = "https://{}.dfs.core.windows.net/".format(account_name)
+    
+    dfs = DataLakeFileSystem(account_url, credential, "filesystem")
+    
+    dfs.mkdir("testdir")
+    
+    with dfs.open("testdir/hello.txt", "wb") as f:
+        f.write("world")
+    
+    dfs.ls("testdir")
+    dfs.mv("testidr", "newdir")
